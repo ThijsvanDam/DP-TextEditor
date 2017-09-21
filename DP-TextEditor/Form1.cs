@@ -20,8 +20,6 @@ namespace DP_TextEditor
             _currentFile = FileSingleton.GetInstance();
         }
 
-
-
         private void btnOpen_Click(object sender, EventArgs e)
         {
             openFileDialog.ShowDialog();
@@ -30,12 +28,12 @@ namespace DP_TextEditor
                 _currentFile.Open(openFileDialog.FileName);
                 tbInputField.Text = _currentFile.GetData();
             }
-            
+            Console.WriteLine(_currentFile.GetFilePath());
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (_currentFile.exists)
+            if (_currentFile.Exists())
             {
                 _currentFile.Save(_currentFile.GetFilePath());
             }
@@ -50,12 +48,55 @@ namespace DP_TextEditor
         {
             tbInputField.Text = _currentFile.Undo();
         }
-        
-        
 
-        private void tbInputField_KeyPress(object sender, KeyPressEventArgs e)
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _currentFile.AddAction(tbInputField.Text);
+            if (!_currentFile.GetSaved())
+            {
+                string messageBoxText = "Do you want to save your changes?";
+                string caption = "DP-TextEditor";
+                MessageBoxButtons button = MessageBoxButtons.YesNoCancel;
+                MessageBoxIcon icon = MessageBoxIcon.Warning;
+                DialogResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        _currentFile.Save();
+                        _currentFile.CloseStream();
+                        break;
+                    case DialogResult.No:
+                        _currentFile.ResetFile();
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                }
+            }
+        }
+
+        private void tbInputField_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (InputKey((int)e.KeyCode))
+                _currentFile.AddAction(tbInputField.Text);
+        }
+
+        private void tbInputField_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(InputKey((int)e.KeyCode))
+                _currentFile.AddAction(tbInputField.Text);
+        }
+
+        private bool InputKey(int input)
+        {
+            if (input >= 96 && input <= 111 ||
+                input >= 65 && input <= 90 ||
+                input >= 48 && input <= 57 ||
+                input == 8 ||
+                input == 32 ||
+                input == 46)
+                return true;
+            return false;
         }
     }
 }

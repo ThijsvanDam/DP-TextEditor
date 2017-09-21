@@ -38,9 +38,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(132, 28);
+            this.btnSave.Location = new System.Drawing.Point(148, 35);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 31);
+            this.btnSave.Size = new System.Drawing.Size(84, 39);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -48,9 +49,10 @@
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(51, 28);
+            this.btnOpen.Location = new System.Drawing.Point(57, 35);
+            this.btnOpen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(75, 31);
+            this.btnOpen.Size = new System.Drawing.Size(84, 39);
             this.btnOpen.TabIndex = 2;
             this.btnOpen.Text = "Open";
             this.btnOpen.UseVisualStyleBackColor = true;
@@ -58,9 +60,10 @@
             // 
             // btnUndo
             // 
-            this.btnUndo.Location = new System.Drawing.Point(213, 28);
+            this.btnUndo.Location = new System.Drawing.Point(240, 35);
+            this.btnUndo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUndo.Name = "btnUndo";
-            this.btnUndo.Size = new System.Drawing.Size(75, 31);
+            this.btnUndo.Size = new System.Drawing.Size(84, 39);
             this.btnUndo.TabIndex = 3;
             this.btnUndo.Text = "Undo";
             this.btnUndo.UseVisualStyleBackColor = true;
@@ -71,12 +74,14 @@
             this.tbInputField.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbInputField.Location = new System.Drawing.Point(12, 74);
+            this.tbInputField.Location = new System.Drawing.Point(14, 92);
+            this.tbInputField.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbInputField.Multiline = true;
             this.tbInputField.Name = "tbInputField";
-            this.tbInputField.Size = new System.Drawing.Size(632, 319);
+            this.tbInputField.Size = new System.Drawing.Size(710, 398);
             this.tbInputField.TabIndex = 5;
-            this.tbInputField.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbInputField_KeyPress);
+            this.tbInputField.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbInputField_KeyUp);
+            this.tbInputField.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbInputField_KeyDown);
             // 
             // openFileDialog
             // 
@@ -84,15 +89,17 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 405);
+            this.ClientSize = new System.Drawing.Size(738, 506);
             this.Controls.Add(this.tbInputField);
             this.Controls.Add(this.btnUndo);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.btnSave);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

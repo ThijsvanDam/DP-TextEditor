@@ -10,7 +10,10 @@ namespace DP_TextEditor
     {
         private static FileSingleton _instance = new FileSingleton();
         private File _data = new File();
-        public bool exists = false;
+        private FileStream _fileStream;
+
+        private bool _savedEverything = true;
+
         public static FileSingleton GetInstance()
         {
             if (_instance == null)
@@ -20,6 +23,11 @@ namespace DP_TextEditor
             return _instance;
         }
 
+        public bool Exists()
+        {
+            return _fileStream != null;
+        }
+
         public string GetData()
         {
             return _data.Value;
@@ -27,41 +35,74 @@ namespace DP_TextEditor
 
         public string GetFilePath()
         {
-            return path;
+            return _fileStream.Name;
+        }
+
+        public void CloseStream()
+        {
+            _fileStream.Close();
         }
 
         public void Save()
         {
-            Save(path);
+            Save(_fileStream.Name);
+        }
+
+        public bool GetSaved()
+        {
+            return _savedEverything;
+        }
+
+        public void ResetFile()
+        {
+            _fileStream = null;
+            _data.Value = null;
+            _data.History = new Stack<string>();
         }
 
         public void Save(string filepath)
         {
+            if (_fileStream != null)
+            {
+                _fileStream.Close();
+            }
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream _file = System.IO.File.Create(filepath);
-            bf.Serialize(_file, _data);
-            _file.Close();
+            _fileStream = System.IO.File.Create(filepath);
+            bf.Serialize(_fileStream, _data);
+            _savedEverything = true;
         }
 
         public String Undo()
         {
-            _data.History.Pop();
-            _data.Value = _data.History.Peek();
-            return _data.Value;
+            if (_data.History.Count > 1)
+            {
+                _data.History.Pop();
+                _data.Value = _data.History.Peek();
+                _savedEverything = true;
+                return _data.Value;
+            }
+            return "";
         }
 
         public void Open(string fileName)
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream _file = System.IO.File.Open(fileName, FileMode.Open);
-            _data = (File)bf.Deserialize(_file);
-            exists = true;
+            _fileStream = System.IO.File.Open(fileName, FileMode.Open);
+            _data = (File)bf.Deserialize(_fileStream);
         }
 
         public void AddAction(string input)
         {
-            _data.Value = input;
-            _data.History.Push(input);
+            if (input != "")
+            {
+                if (_data.Value != input)
+                {
+                    _savedEverything = false;
+                    _data.Value = input;
+                    _data.History.Push(input);
+                    Console.WriteLine(input);
+                }
+            }
         }
     }
 }

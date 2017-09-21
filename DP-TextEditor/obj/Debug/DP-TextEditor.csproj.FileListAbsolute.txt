@@ -7,3 +7,12 @@ c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-Te
 c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-TextEditor\obj\Debug\DP-TextEditor.csproj.GenerateResource.Cache
 c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-TextEditor\obj\Debug\DP-TextEditor.exe
 c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-TextEditor\obj\Debug\DP-TextEditor.pdb
+C:\Users\Thijs-PC\Documents\GitHub\DP-TextEditor\DP-TextEditor\bin\Debug\DP-TextEditor.exe.config
+C:\Users\Thijs-PC\Documents\GitHub\DP-TextEditor\DP-TextEditor\obj\Debug\DP-TextEditor.exe
+C:\Users\Thijs-PC\Documents\GitHub\DP-TextEditor\DP-TextEditor\obj\Debug\DP-TextEditor.pdb
+C:\Users\Thijs-PC\Documents\GitHub\DP-TextEditor\DP-TextEditor\obj\Debug\DP-TextEditor.csprojResolveAssemblyReference.cache
+C:\Users\Thijs-PC\Documents\GitHub\DP-TextEditor\DP-TextEditor\obj\Debug\DP_TextEditor.Form1.resources
+C:\Users\Thijs-PC\Documents\GitHub\DP-TextEditor\DP-TextEditor\obj\Debug\DP_TextEditor.Properties.Resources.resources
+C:\Users\Thijs-PC\Documents\GitHub\DP-TextEditor\DP-TextEditor\obj\Debug\DP-TextEditor.csproj.GenerateResource.Cache
+C:\Users\Thijs-PC\Documents\GitHub\DP-TextEditor\DP-TextEditor\bin\Debug\DP-TextEditor.exe
+C:\Users\Thijs-PC\Documents\GitHub\DP-TextEditor\DP-TextEditor\bin\Debug\DP-TextEditor.pdb
