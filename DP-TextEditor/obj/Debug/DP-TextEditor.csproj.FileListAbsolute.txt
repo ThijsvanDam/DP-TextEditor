@@ -1,0 +1,9 @@
+c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-TextEditor\bin\Debug\DP-TextEditor.exe.config
+c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-TextEditor\bin\Debug\DP-TextEditor.exe
+c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-TextEditor\bin\Debug\DP-TextEditor.pdb
+c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-TextEditor\obj\Debug\DP-TextEditor.csprojResolveAssemblyReference.cache
+c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-TextEditor\obj\Debug\DP_TextEditor.Form1.resources
+c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-TextEditor\obj\Debug\DP_TextEditor.Properties.Resources.resources
+c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-TextEditor\obj\Debug\DP-TextEditor.csproj.GenerateResource.Cache
+c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-TextEditor\obj\Debug\DP-TextEditor.exe
+c:\users\thijs van dam\documents\visual studio 2015\Projects\DP-TextEditor\DP-TextEditor\obj\Debug\DP-TextEditor.pdb
