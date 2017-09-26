@@ -62,11 +62,8 @@ namespace DP_TextEditor
 
         public void Save(string filepath)
         {
-            if (_fileStream != null)
-            {
-                _fileStream.Close();
-            }
-            BinaryFormatter bf = new BinaryFormatter();
+            _fileStream?.Close();
+            var bf = new BinaryFormatter();
             _fileStream = System.IO.File.Create(filepath);
             bf.Serialize(_fileStream, _data);
             _savedEverything = true;
@@ -86,7 +83,7 @@ namespace DP_TextEditor
 
         public void Open(string fileName)
         {
-            BinaryFormatter bf = new BinaryFormatter();
+            var bf = new BinaryFormatter();
             _fileStream = System.IO.File.Open(fileName, FileMode.Open);
             _data = (File)bf.Deserialize(_fileStream);
         }
