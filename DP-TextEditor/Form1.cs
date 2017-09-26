@@ -49,6 +49,11 @@ namespace DP_TextEditor
             tbInputField.Text = _currentFile.Undo();
         }
 
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            tbInputField.Text = _currentFile.ResetFile();
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!_currentFile.GetSaved())
@@ -66,7 +71,7 @@ namespace DP_TextEditor
                         _currentFile.CloseStream();
                         break;
                     case DialogResult.No:
-                        _currentFile.ResetFile();
+                        _currentFile.EmptyFile();
                         break;
                     case DialogResult.Cancel:
                         e.Cancel = true;

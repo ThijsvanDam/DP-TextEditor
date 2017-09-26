@@ -10,6 +10,7 @@ namespace DP_TextEditor
     {
         private static FileSingleton _instance = new FileSingleton();
         private File _data = new File();
+        private File _previousVersion = new File("", new Stack<string>());
         private FileStream _fileStream;
 
         private bool _savedEverything = true;
@@ -53,23 +54,37 @@ namespace DP_TextEditor
             return _savedEverything;
         }
 
-        public void ResetFile()
+        public void EmptyFile()
         {
             _fileStream = null;
             _data.Value = null;
             _data.History = new Stack<string>();
+            _previousVersion.Value = null;
+            _previousVersion.History = new Stack<string>();
+        }
+
+        public string ResetFile()
+        {
+            if (_data.Value != null)
+            {
+                _data.Value = _previousVersion.Value;
+                _data.History = _previousVersion.History;
+                return _data.Value;
+            }
+            return "";
         }
 
         public void Save(string filepath)
         {
             _fileStream?.Close();
+            _previousVersion = new File(_data.Value, _data.History);
             var bf = new BinaryFormatter();
             _fileStream = System.IO.File.Create(filepath);
             bf.Serialize(_fileStream, _data);
             _savedEverything = true;
         }
 
-        public String Undo()
+        public string Undo()
         {
             if (_data.History.Count > 1)
             {
@@ -86,6 +101,7 @@ namespace DP_TextEditor
             var bf = new BinaryFormatter();
             _fileStream = System.IO.File.Open(fileName, FileMode.Open);
             _data = (File)bf.Deserialize(_fileStream);
+            _previousVersion = new File(_data.Value, _data.History);
         }
 
         public void AddAction(string input)
