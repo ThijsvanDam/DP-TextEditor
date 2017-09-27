@@ -31,7 +31,7 @@ namespace DP_TextEditor
 
         public string GetData()
         {
-            return _data.Value;
+            return _data.GetValue();
         }
 
         public string GetFilePath()
@@ -57,19 +57,19 @@ namespace DP_TextEditor
         public void EmptyFile()
         {
             _fileStream = null;
-            _data.Value = null;
-            _data.History = new Stack<string>();
-            _previousVersion.Value = null;
-            _previousVersion.History = new Stack<string>();
+            _data.SetValue(null);
+            _data.SetHistory(new Stack<string>());
+            _previousVersion.SetValue(null);
+            _previousVersion.SetHistory(new Stack<string>());
         }
 
         public string ResetFile()
         {
-            if (_data.Value != null)
+            if (_data.GetValue() != null)
             {
-                _data.Value = _previousVersion.Value;
-                _data.History = _previousVersion.History;
-                return _data.Value;
+                _data.SetValue(_previousVersion.GetValue());
+                _data.SetHistory(_previousVersion.GetHistory());
+                return _data.GetValue();
             }
             return "";
         }
@@ -77,7 +77,7 @@ namespace DP_TextEditor
         public void Save(string filepath)
         {
             _fileStream?.Close();
-            _previousVersion = new File(_data.Value, _data.History);
+            _previousVersion = new File(_data.GetValue(), _data.GetHistory());
             var bf = new BinaryFormatter();
             _fileStream = System.IO.File.Create(filepath);
             bf.Serialize(_fileStream, _data);
@@ -86,12 +86,12 @@ namespace DP_TextEditor
 
         public string Undo()
         {
-            if (_data.History.Count > 1)
+            if (_data.CountHistory() > 1)
             {
-                _data.History.Pop();
-                _data.Value = _data.History.Peek();
+                _data.HistoryPop();
+                _data.SetValue(_data.HistoryPeek());
                 _savedEverything = true;
-                return _data.Value;
+                return _data.GetValue();
             }
             return "";
         }
@@ -101,19 +101,18 @@ namespace DP_TextEditor
             var bf = new BinaryFormatter();
             _fileStream = System.IO.File.Open(fileName, FileMode.Open);
             _data = (File)bf.Deserialize(_fileStream);
-            _previousVersion = new File(_data.Value, _data.History);
+            _previousVersion = new File(_data.GetValue(), _data.GetHistory());
         }
 
         public void AddAction(string input)
         {
             if (input != "")
             {
-                if (_data.Value != input)
+                if (_data.GetValue() != input)
                 {
                     _savedEverything = false;
-                    _data.Value = input;
-                    _data.History.Push(input);
-                    Console.WriteLine(input);
+                    _data.SetValue(input);
+                    _data.HistoryPush(input);
                 }
             }
         }
